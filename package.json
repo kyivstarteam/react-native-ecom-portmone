@@ -1,0 +1,27 @@
+{
+  "name": "react-native-ecom-portmone",
+  "version": "1.0.1",
+  "description": "Portmone E-com SDK",
+  "main": "index",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "deployGithubOnly": "npm --no-git-tag-version version patch && git add . && git commit -am \"Next Version\" && git push --force",
+    "deploy": "npm --no-git-tag-version version patch && git add . && git commit -am \"Next Version\" && git push && npm publish"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "Yevhenii Onipko",
+  "license": "MIT",
+  "peerDependencies": {
+    "react-native": "^0.41.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yevheniionipko/react-native-ecom-portmone.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yevheniionipko/react-native-ecom-portmone/issues"
+  },
+  "homepage": "https://github.com/yevheniionipko/react-native-ecom-portmone#readme"
+}
