@@ -1,4 +1,4 @@
-# React Native Ecom Portmone (Android Only)
+# React Native Ecom Portmone Android/IOS
 
 ## Portmone eCommerce Android SDK
 
