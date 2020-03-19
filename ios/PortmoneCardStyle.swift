@@ -3,7 +3,7 @@ import Foundation
 import PortmoneSDKEcom
 
 class PortmoneCardStyle: StyleSource {
-  private static let buttonCornerRadius = CGFloat(4)
+  private static let buttonCornerRadius = CGFloat(25)
   private static let defaultFont = UIFont.systemFont(ofSize: 1)
   private static let whiteColor = UIColor.white
   private static let blackColor = UIColor.black

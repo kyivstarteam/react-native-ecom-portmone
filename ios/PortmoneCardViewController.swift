@@ -59,7 +59,6 @@ class PortmoneCardViewController: UIViewController {
     return PaymentParams(
       description: phoneNumber,
       attribute1: "P",
-      billNumber: "SD\(Int(Date().timeIntervalSince1970))",
       preauthFlag: false,
       billAmount: billAmount,
       payeeId: payeeId,
