@@ -9,5 +9,5 @@ public final class Constants {
     public final static String PHONE_TYPE = "phone";
     public final static String ACCOUNT_TYPE = "account";
     public final static String PORTMONE_TAG = "PORTMONE";
-    public final static String BILL_KEY = "token";
+    public final static String BILL_KEY = "BILL";
 }
