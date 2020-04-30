@@ -26,7 +26,7 @@ allprojects {
 }
 ### build.gradle (app level)
 dependencies {
-       implementation 'com.portmone.ecomsdk:ecomsdk:1.3.1'
+       implementation 'com.portmone.ecomsdk:ecomsdk:1.3.3'
 }
 ```
 
@@ -57,8 +57,9 @@ $ react-native link react-native-ecom-portmone
 import PortmoneSDK from 'react-native-ecom-portmone';
 ```
 
-### Invoke portmone SDK
+### Portmone SDK
 ```tsx
+import PortmoneSdk, { PaymentType } from 'react-native-ecom-portmone';
 
 type Locale = 'uk' | 'ru' | 'en';
 
@@ -68,36 +69,19 @@ interface SavingCard {
     token: string
 }
 
-interface InvokePortmoneSdk {
-    initCardPayment(payeeId: string, phoneNumber: string, billAmount: number): Promise<void>;
-    initCardSaving(payeeId: string): Promise<SavingCard>;
-}
-
-useEffect(() => {
-    const portmone: InvokePortmoneSdk = PortmoneSDK.invokePortmoneSdk(locale);
-}, [])
-
-```
-
-### Init pay without save card
-```tsx
-
 const payeeId: string = 'Your payee id';
 const phoneNumber: string = '681234567';
 const amount: number = 10
+const type: PaymentType = 'account';
+
+const portmoneSdk = new PortmoneSdk(locale);
 
 initPayWithoutSavingCard = () => {
-    portmone.initCardPayment(payeeId, phoneNumber, amount);
+    portmoneSdk.initCardPayment(payeeId, phoneNumber, amount, type);
 }
-```
 
-### Init saving card
-```tsx
-
-const payeeId: string = 'Your payee id';
-
-initSavingCard = () => {
-    portmone.initCardSaving(payeeId);
+initSavingCard = async () => {
+    const result: SavingCard = await portmoneSdk.initCardSaving(payeeId);
 }
 
 ```
