@@ -1,6 +1,6 @@
-# React Native Ecom Portmone Android/IOS
+# React Native Ecom Portmone
 
-## Portmone eCommerce Android SDK
+## Portmone eCommerce SDK
 
 ## Usage
 
@@ -60,14 +60,21 @@ import PortmoneSDK from 'react-native-ecom-portmone';
 ### Invoke portmone SDK
 ```tsx
 
-// App.js
-
 type Locale = 'uk' | 'ru' | 'en';
 
 const locale: Locale = 'uk';
 
-useEffect( async () => {
-    await PortmoneSDK.invokePortmoneSdk(locale);
+interface SavingCard {
+    token: string
+}
+
+interface InvokePortmoneSdk {
+    initCardPayment(payeeId: string, phoneNumber: string, billAmount: number): Promise<void>;
+    initCardSaving(payeeId: string): Promise<SavingCard>;
+}
+
+useEffect(() => {
+    const portmone: InvokePortmoneSdk = PortmoneSDK.invokePortmoneSdk(locale);
 }, [])
 
 ```
@@ -79,8 +86,18 @@ const payeeId: string = 'Your payee id';
 const phoneNumber: string = '681234567';
 const amount: number = 10
 
-initPayWithoutCard = async () => {
-    await PortmoneSDK.initCardPayment(payeeId, phoneNumber, amount);
+initPayWithoutSavingCard = () => {
+    portmone.initCardPayment(payeeId, phoneNumber, amount);
+}
+```
+
+### Init saving card
+```tsx
+
+const payeeId: string = 'Your payee id';
+
+initSavingCard = () => {
+    portmone.initCardSaving(payeeId);
 }
 
 ```
