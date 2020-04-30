@@ -1,37 +1,33 @@
-import { NativeModules } from "react-native";
+import { NativeModules, Platform } from "react-native";
 const { PortmoneCardModule: RNModule } = NativeModules;
 
-function initCardPayment(payeeId, phoneNumber, billAmount) {
-  try {
-    if (typeof payeeId !== 'string') {
-      throw new Error('payeeId must be string');
-    }
-    return RNModule.initCardPayment(payeeId, phoneNumber, billAmount);
-  } catch (e) {
-    console.info(`JS => PortmoneCardModule => initCardPayment => ${e}`)
-  }
-}
-
-function initCardSaving(payeeId) {
-  try {
-    if (typeof payeeId !== 'string') {
-      throw new Error('payeeId must be string');
-    }
-    return RNModule.initCardSaving(payeeId);
-  } catch (e) {
-    console.info(`JS => PortmoneCardModule => initCardSaving => ${e}`)
-  }
-}
-
 export default class PortmoneCardModule {
-  static invokePortmoneSdk(lang) {
-    if (typeof lang !== 'string') {
-      throw new Error('lang must be string');
-    }
-    RNModule.invokePortmoneSdk(lang);
-    return {
-      initCardPayment,
-      initCardSaving,
-    }
+  lang = 'uk';
+  constructor(lang) {
+    this.lang = lang;
   }
-};
+
+  initCardPayment = (payeeId, phoneNumber, billAmount, type) => {
+    if (typeof payeeId !== 'string') {
+      throw new Error('payeeId must be string');
+    }
+    if (Platform.OS === 'ios') {
+      RNModule.invokePortmoneSdk(this.lang);
+      return RNModule.initCardPayment(payeeId, phoneNumber, billAmount, type);
+    }
+    if (Platform.OS === 'android') {
+      RNModule.invokePortmoneSdk(this.lang, type);
+      return RNModule.initCardPayment(payeeId, phoneNumber, billAmount);
+    }
+    throw new Error('unsupported platform (only ios and android)');
+  }
+
+  initCardSaving = (payeeId) => {
+    if (typeof payeeId !== 'string') {
+      throw new Error('payeeId must be string');
+    }
+    RNModule.invokePortmoneSdk(this.lang);
+    return RNModule.initCardSaving(payeeId);
+  }
+}
+

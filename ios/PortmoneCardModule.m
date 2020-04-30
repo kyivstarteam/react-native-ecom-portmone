@@ -7,6 +7,7 @@ RCT_EXTERN_METHOD(invokePortmoneSdk:(NSString *)lang)
 RCT_EXTERN_METHOD(initCardPayment:(NSString *)payeeId
                   phoneNumber:(NSString *)phoneNumber
                   billAmount:(NSInteger *)billAmount
+                  type:(NSString *)type
                   resolve:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject
                   )
