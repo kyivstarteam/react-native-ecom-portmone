@@ -4,7 +4,7 @@ declare module 'react-native-ecom-portmone' {
         token: string
     }
 
-    type PaymentType = 'account' | 'phone' | undefined
+    export type PaymentType = 'account' | 'phone' | undefined
 
     class PortmoneCardModule {
         private lang: string;
