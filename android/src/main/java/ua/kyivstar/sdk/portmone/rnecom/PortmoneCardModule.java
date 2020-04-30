@@ -27,6 +27,7 @@ import com.portmone.ecomsdk.ui.savecard.PreauthCardActivity;
 import com.portmone.ecomsdk.util.Constant$BillCurrency;
 
 import com.portmone.ecomsdk.util.Constant$Language;
+import com.portmone.ecomsdk.util.Constant$Type;
 
 import java.util.Arrays;
 import java.util.List;
@@ -59,10 +60,20 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
         return AVAILABLE_LANGUAGES.contains(lang) ? lang : Constant$Language.SYSTEM;
     }
 
+    private int getTypeUI(String type) {
+        if (type.equals(Constants.PHONE_TYPE)) {
+            return Constant$Type.PHONE;
+        }
+        if (type.equals(Constants.ACCOUNT_TYPE)) {
+            return Constant$Type.ACCOUNT;
+        }
+        return Constant$Type.DEFAULT;
+    }
+
     @ReactMethod
-    public void invokePortmoneSdk(String lang) {
+    public void invokePortmoneSdk(String lang, String type) {
         try {
-            final AppStyle styles = APP_STYLE_FACTORY.createStyles(reactContext);
+            final AppStyle styles = APP_STYLE_FACTORY.createStyles(reactContext, getTypeUI(type));
             PortmoneSDK.setLanguage(getLanguage(lang));
             PortmoneSDK.setFingerprintPaymentEnable(true);
             PortmoneSDK.setAppStyle(styles);

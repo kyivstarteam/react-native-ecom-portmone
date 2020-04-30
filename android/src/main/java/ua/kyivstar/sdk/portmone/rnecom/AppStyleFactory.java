@@ -1,13 +1,12 @@
 package ua.kyivstar.sdk.portmone.rnecom;
 
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 
 import com.facebook.react.bridge.ReactContext;
 import ua.kyivstar.sdk.portmone.rnecom.R;
 import com.portmone.ecomsdk.data.style.AppStyle;
 import com.portmone.ecomsdk.data.style.ButtonStyle;
 import com.portmone.ecomsdk.data.style.TextStyle;
-import com.portmone.ecomsdk.util.Constant$Type;
 
 public final class AppStyleFactory {
       private ButtonStyle createButtonStyles(ReactContext reactContext) {
@@ -24,7 +23,7 @@ public final class AppStyleFactory {
             return titleTextStyles;
       }
 
-      public AppStyle createStyles(ReactContext reactContext) {
+      public AppStyle createStyles(ReactContext reactContext, int type) {
             AppStyle styles = new AppStyle();
             ButtonStyle buttonStyles = createButtonStyles(reactContext);
             TextStyle titleTextStyles = createTextStyles(reactContext);
@@ -33,7 +32,7 @@ public final class AppStyleFactory {
             styles.setButtonStyle(buttonStyles);
             styles.setTitleTextStyle(titleTextStyles);
 
-            styles.setType(Constant$Type.PHONE);
+            styles.setType(type);
 
             return styles;
       }
