@@ -81,7 +81,14 @@ class PortmoneCardViewController: UIViewController {
         }
         return defaultPaymentType
     }
-    
+
+    private func getAttribute(type: String) -> String {
+        if (type == "account") {
+            return "A"
+        }
+        return "P"
+    }
+
     private func getCardPaymentParams(
         payeeId: String,
         phoneNumber: String,
@@ -90,7 +97,7 @@ class PortmoneCardViewController: UIViewController {
     ) -> PaymentParams {
         return PaymentParams(
             description: phoneNumber,
-            attribute1: "P",
+            attribute1: self.getAttribute(type: type),
             preauthFlag: false,
             billAmount: billAmount,
             billAmountWcvv: billAmountWcvv,

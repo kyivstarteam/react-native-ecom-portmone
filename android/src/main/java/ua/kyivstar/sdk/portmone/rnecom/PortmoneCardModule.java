@@ -44,6 +44,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
 
     private ReactApplicationContext reactContext;
     private Promise promise;
+    private String numberType;
 
     public PortmoneCardModule(@NonNull ReactApplicationContext reactContext) {
         super(reactContext);
@@ -70,9 +71,17 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
         return Constant$Type.DEFAULT;
     }
 
+    private String getAttribute(String type) {
+        if (type.equals(Constants.ACCOUNT_TYPE)) {
+            return Constants.ATTR_1_ACCOUNT;
+        }
+        return Constants.ATTR_1_PHONE;
+    }
+
     @ReactMethod
     public void invokePortmoneSdk(String lang, String type) {
         try {
+            this.numberType = type;
             final AppStyle styles = APP_STYLE_FACTORY.createStyles(reactContext, getTypeUI(type));
             PortmoneSDK.setLanguage(getLanguage(lang));
             PortmoneSDK.setFingerprintPaymentEnable(true);
@@ -90,7 +99,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
                 Constants.BILL_NUMBER,
                 Constants.ALLOW_PRE_AUTH,
                 Constant$BillCurrency.UAH,
-                Constants.ATTR_1,
+                getAttribute(this.numberType),
                 null,
                 null,
                 null,
