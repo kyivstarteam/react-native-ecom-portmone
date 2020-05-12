@@ -1,4 +1,4 @@
-declare module 'react-native-ecom-portmone' {
+declare module '@kyivstarteam/react-native-ecom-portmone' {
 
     interface SavingCard {
         token: string
