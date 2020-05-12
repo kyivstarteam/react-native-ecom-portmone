@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/kyivstarteam/react-native-ecom-portmone/issues"
   },
-  "homepage": "https://github.com/kyivstarteam/react-native-ecom-portmone#readme"
+  "homepage": "https://github.com/kyivstarteam/react-native-ecom-portmone#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
