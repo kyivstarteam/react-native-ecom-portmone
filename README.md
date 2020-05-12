@@ -33,7 +33,7 @@ dependencies {
 ### Install
 
 ```
-$ yarn add react-native-ecom-portmone
+$ yarn add @kyivstarteam/react-native-ecom-portmone
 ```
 
 ### Link
@@ -48,18 +48,18 @@ $ yarn add react-native-ecom-portmone
 
 
 ```bash
-$ react-native link react-native-ecom-portmone
+$ react-native link @kyivstarteam/react-native-ecom-portmone
 ```
 
 ### Import
 
 ```js
-import PortmoneSDK from 'react-native-ecom-portmone';
+import PortmoneSDK from '@kyivstarteam/react-native-ecom-portmone';
 ```
 
 ### Portmone SDK
 ```tsx
-import PortmoneSdk, { PaymentType } from 'react-native-ecom-portmone';
+import PortmoneSdk, { PaymentType } from '@kyivstarteam/react-native-ecom-portmone';
 
 type Locale = 'uk' | 'ru' | 'en';
 
