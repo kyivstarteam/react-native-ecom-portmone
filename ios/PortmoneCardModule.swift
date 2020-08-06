@@ -11,11 +11,11 @@ class PortmoneCardModule: NSObject, RCTBridgeModule {
         return "PortmoneCardModule"
     }
     
-    @objc(invokePortmoneSdk:)
-    public func invokePortmoneSdk(lang: String) -> Void {
+    @objc(invokePortmoneSdk:uid:)
+    public func invokePortmoneSdk(lang: String, uid: String) -> Void {
         self.portmoneCardViewController = PortmoneCardViewController()
         
-        self.portmoneCardViewController?.invokePortmoneSdk(lang: lang)
+        self.portmoneCardViewController?.invokePortmoneSdk(lang: lang, uid: uid)
         self.rootViewController.present(self.portmoneCardViewController!, animated: true)
     }
     

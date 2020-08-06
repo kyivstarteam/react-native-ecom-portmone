@@ -79,11 +79,12 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void invokePortmoneSdk(String lang, String type) {
+    public void invokePortmoneSdk(String lang, String type, String uid) {
         try {
             this.numberType = type;
             final AppStyle styles = APP_STYLE_FACTORY.createStyles(reactContext, getTypeUI(type));
             PortmoneSDK.setLanguage(getLanguage(lang));
+            PortmoneSDK.setUid(uid);
             PortmoneSDK.setFingerprintPaymentEnable(true);
             PortmoneSDK.setAppStyle(styles);
         } catch (IllegalViewOperationException e) {

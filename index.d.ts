@@ -9,7 +9,13 @@ declare module '@kyivstarteam/react-native-ecom-portmone' {
     class PortmoneCardModule {
         private lang: string;
         constructor(lang: string);
-        initCardPayment(payeeId: string, phoneNumber: string, billAmount: number, type?: PaymentType): Promise<void>;
+        initCardPayment(
+            payeeId: string,
+            phoneNumber: string,
+            billAmount: number,
+            uid: string,
+            type?: PaymentType
+        ): Promise<void>;
         initCardSaving(payeeId: string): Promise<SavingCard>;
     }
     export default PortmoneCardModule;
