@@ -3,7 +3,9 @@
 
 @interface RCT_EXTERN_MODULE(PortmoneCardModule, NSObject)
 
-RCT_EXTERN_METHOD(invokePortmoneSdk:(NSString *)lang)
+RCT_EXTERN_METHOD(invokePortmoneSdk:(NSString *)lang
+                  uid:(NSString *)uid
+                  )
 RCT_EXTERN_METHOD(initCardPayment:(NSString *)payeeId
                   phoneNumber:(NSString *)phoneNumber
                   billAmount:(NSInteger *)billAmount

@@ -37,11 +37,13 @@ class PortmoneCardViewController: UIViewController {
         self.cardStyle = PortmoneCardStyle.init()
     }
     
-    public func invokePortmoneSdk(lang: String?) {
+    public func invokePortmoneSdk(lang: String?, uid: String) {
         self.paymentPresenter = PaymentPresenter(
             delegate: self,
             styleSource: cardStyle,
-            language: Language(rawValue: lang!) ?? Language.ukrainian)
+            language: Language(rawValue: lang!) ?? Language.ukrainian,
+            customUid: uid
+        )
     }
     
     public func initCardPayment(payeeId: String,

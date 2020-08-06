@@ -7,16 +7,16 @@ export default class PortmoneCardModule {
     this.lang = lang;
   }
 
-  initCardPayment = (payeeId, phoneNumber, billAmount, type) => {
+  initCardPayment = (payeeId, phoneNumber, billAmount, uid, type) => {
     if (typeof payeeId !== 'string') {
       throw new Error('payeeId must be string');
     }
     if (Platform.OS === 'ios') {
-      RNModule.invokePortmoneSdk(this.lang);
+      RNModule.invokePortmoneSdk(this.lang, uid);
       return RNModule.initCardPayment(payeeId, phoneNumber, billAmount, type);
     }
     if (Platform.OS === 'android') {
-      RNModule.invokePortmoneSdk(this.lang, type);
+      RNModule.invokePortmoneSdk(this.lang, type, uid);
       return RNModule.initCardPayment(payeeId, phoneNumber, billAmount);
     }
     throw new Error('unsupported platform (only ios and android)');
