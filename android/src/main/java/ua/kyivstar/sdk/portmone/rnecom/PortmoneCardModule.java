@@ -21,9 +21,11 @@ import com.portmone.ecomsdk.PortmoneSDK;
 import com.portmone.ecomsdk.data.Bill;
 import com.portmone.ecomsdk.data.CardPaymentParams;
 import com.portmone.ecomsdk.data.SaveCardParams;
+import com.portmone.ecomsdk.data.TokenPaymentParams;
 import com.portmone.ecomsdk.data.style.AppStyle;
 import com.portmone.ecomsdk.ui.card.CardPaymentActivity;
 import com.portmone.ecomsdk.ui.savecard.PreauthCardActivity;
+import com.portmone.ecomsdk.ui.token.payment.TokenPaymentActivity;
 import com.portmone.ecomsdk.util.Constant$BillCurrency;
 
 import com.portmone.ecomsdk.util.Constant$Language;
@@ -41,6 +43,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
         Constant$Language.EN, Constant$Language.RU, Constant$Language.UK
     );
     private static final String TOKEN_PROPERTY = "token";
+    private static final String CARD_MASK_PROPERTY = "card_mask";
 
     private ReactApplicationContext reactContext;
     private Promise promise;
@@ -85,7 +88,6 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
             final AppStyle styles = APP_STYLE_FACTORY.createStyles(reactContext, getTypeUI(type));
             PortmoneSDK.setLanguage(getLanguage(lang));
             PortmoneSDK.setUid(uid);
-            PortmoneSDK.setFingerprintPaymentEnable(true);
             PortmoneSDK.setAppStyle(styles);
         } catch (IllegalViewOperationException e) {
             Log.d(Constants.PORTMONE_TAG, "invokePortmoneSdk: ERROR", e);
@@ -137,6 +139,41 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
         }
     }
 
+    @ReactMethod
+    public void initCardPaymentByToken(
+            String payeeId,
+            String phoneNumber,
+            int billAmount,
+            String cardMask,
+            String token,
+            final Promise promise
+    ) {
+        try {
+            final TokenPaymentParams params = new TokenPaymentParams(
+                    payeeId,
+                    Constants.BILL_NUMBER,
+                    Constants.ALLOW_PRE_AUTH,
+                    Constant$BillCurrency.UAH,
+                    getAttribute(this.numberType),
+                    null,
+                    null,
+                    null,
+                    billAmount,
+                    cardMask,
+                    token,
+                    phoneNumber
+            );
+            TokenPaymentActivity.performTransaction(
+                    getCurrentActivity(),
+                    Constants.REQUEST_CODE,
+                    params
+            );
+            this.promise = promise;
+        } catch (IllegalViewOperationException e) {
+            Log.d(Constants.PORTMONE_TAG, "initCardPaymentByToken: ERROR", e);
+        }
+    }
+
     private final ActivityEventListener mActivityEventListener = new BaseActivityEventListener() {
         @Override
         public void onActivityResult(Activity activity, int requestCode, int resultCode, Intent intent) {
@@ -146,8 +183,10 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
                         Bundle bundle = intent.getExtras();
                         Bill bill = (Bill)bundle.get(Constants.BILL_KEY);
                         String token = bill.getToken();
+                        String card_mask = bill.getCardMask();
                         WritableMap map = Arguments.createMap();
                         map.putString(TOKEN_PROPERTY, token);
+                        map.putString(CARD_MASK_PROPERTY, card_mask);
                         promise.resolve(map);
                     } else {
                         promise.reject(Constants.PORTMONE_TAG, new Error("Result code: " + resultCode));
