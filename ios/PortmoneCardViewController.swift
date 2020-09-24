@@ -4,6 +4,7 @@ import PortmoneSDKEcom
 
 struct FinishPaymentsData: Codable {
     let token: String
+    let cardMask: String
 }
 
 struct ErrorPaymentsData: Codable {
@@ -21,22 +22,22 @@ class PortmoneCardViewController: UIViewController {
     private let defaultPaymentType: PaymentType = .payment
     private let paymentFlowType: PaymentFlowType = .byCard
     private let billAmountWcvv: Double = 8000
-    
+
     private var lang: String?
     private var paymentPresenter: PaymentPresenter?
     private var cardStyle: PortmoneCardStyle?
     private var resolver: PortmoneCardResolver?
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        
+
         self.cardStyle = PortmoneCardStyle.init()
     }
-    
+
     public func invokePortmoneSdk(lang: String?, uid: String) {
         self.paymentPresenter = PaymentPresenter(
             delegate: self,
@@ -45,7 +46,7 @@ class PortmoneCardViewController: UIViewController {
             customUid: uid
         )
     }
-    
+
     public func initCardPayment(payeeId: String,
                                 phoneNumber: String,
                                 billAmount: Double,
@@ -59,21 +60,46 @@ class PortmoneCardViewController: UIViewController {
             billAmount: billAmount,
             type: type
         )
-        
+
         self.paymentPresenter?.presentPaymentByCard(
             on: self,
             params: paymentParams,
             showReceiptScreen: true
         )
     }
-    
+
     public func initCardSaving(payeeId: String, competition: @escaping (_ result: FinishPaymentsData?, _ error: Error?) -> Void) {
         self.resolver = PortmoneCardResolver(resolver: competition)
         let savingParams = self.getCardSavingParams(payeeId: payeeId)
-        
+
         self.paymentPresenter?.presentPreauthCard(on: self, params: savingParams)
     }
-    
+
+    public func initCardPaymentByToken(payeeId: String,
+                                phoneNumber: String,
+                                billAmount: Double,
+                                type: String,
+                                cardMask: String,
+                                token: String,
+                                competition: @escaping (_ result: FinishPaymentsData?, _ error: Error?) -> Void
+    ) {
+        self.resolver = PortmoneCardResolver(resolver: competition)
+        let paymentParams = self.getCardPaymentParams(
+            payeeId: payeeId,
+            phoneNumber: phoneNumber,
+            billAmount: billAmount,
+            type: type
+        )
+        let tokenParams = TokenPaymentParams(cardNumberMasked: cardMask, tokenData: token)
+
+        self.paymentPresenter?.presentPaymentByToken(
+            on: self,
+            payParams: paymentParams,
+            tokenParams: tokenParams,
+            showReceiptScreen: true
+        )
+    }
+
     private func getTypeUI(type: String) -> PaymentType {
         if (type == "phone") {
             return mobilePaymentType
@@ -106,10 +132,10 @@ class PortmoneCardViewController: UIViewController {
             payeeId: payeeId,
             type: self.getTypeUI(type: type),
             paymentFlowType: paymentFlowType
-            
+
         )
     }
-    
+
     private func getCardSavingParams(
         payeeId: String
     ) -> PreauthParams {
@@ -117,7 +143,7 @@ class PortmoneCardViewController: UIViewController {
             payeeId: payeeId
         )
     }
-    
+
     private func dismissView() -> Void {
         self.dismiss(
             animated: true,
@@ -132,15 +158,16 @@ extension PortmoneCardViewController: PortmonePaymentPresenterDelegate {
             self.resolver?.onPaymentFinish(nil, error)
             self.resolver = nil
         }
-        
+
         if bill != nil {
             let token = bill?.token ?? ""
-            let data = FinishPaymentsData(token: token)
+            let cardMask = bill?.cardMask ?? ""
+            let data = FinishPaymentsData(token: token, cardMask: cardMask)
             self.resolver?.onPaymentFinish(data, nil)
             self.resolver = nil
         }
     }
-    
+
     func dismissedSDK() {
         let error = NSError(domain: "Result code: \(closeModalCode)", code: closeModalCode, userInfo: nil)
         self.resolver?.onPaymentFinish(nil, error)
