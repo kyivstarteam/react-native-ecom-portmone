@@ -28,7 +28,7 @@ export default class PortmoneCardModule {
     }
     if (Platform.OS === 'ios') {
       RNModule.invokePortmoneSdk(this.lang, uid);
-      return RNModule.initCardPaymentByToken(payeeId, phoneNumber, billAmount, cardMask, token, type);
+      return RNModule.initCardPaymentByToken(payeeId, phoneNumber, billAmount, type, cardMask, token);
     }
     if (Platform.OS === 'android') {
       RNModule.invokePortmoneSdk(this.lang, type, uid);
