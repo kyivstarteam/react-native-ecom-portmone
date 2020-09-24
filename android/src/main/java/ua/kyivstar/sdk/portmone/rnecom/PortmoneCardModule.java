@@ -149,7 +149,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
             final Promise promise
     ) {
         try {
-            final TokenPaymentParams testParamsWithoutGooglePay = new TokenPaymentParams(
+            final TokenPaymentParams params = new TokenPaymentParams(
                     payeeId,
                     Constants.BILL_NUMBER,
                     Constants.ALLOW_PRE_AUTH,
@@ -166,7 +166,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
             TokenPaymentActivity.performTransaction(
                     getCurrentActivity(),
                     Constants.REQUEST_CODE,
-                    testParamsWithoutGooglePay
+                    params
             );
             this.promise = promise;
         } catch (IllegalViewOperationException e) {
