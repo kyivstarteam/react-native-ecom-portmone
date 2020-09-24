@@ -4,7 +4,7 @@ declare module '@kyivstarteam/react-native-ecom-portmone' {
         token: string
     }
 
-    interface PaymentsByTokenParams {
+    interface PaymentsParams {
         token: string
         cardMask: string
     }
@@ -21,7 +21,7 @@ declare module '@kyivstarteam/react-native-ecom-portmone' {
             billAmount: number,
             uid: string,
             type?: PaymentType
-        ): Promise<PaymentsByTokenParams>;
+        ): Promise<PaymentsParams>;
 
         initCardPaymentByToken(
             payeeId: string,
