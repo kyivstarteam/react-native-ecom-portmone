@@ -183,7 +183,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
                         Bundle bundle = intent.getExtras();
                         Bill bill = (Bill)bundle.get(Constants.BILL_KEY);
                         String token = bill.getToken();
-                        String card_mask = bill.getCardMask();
+                        String cardMask = bill.getCardMask();
                         WritableMap map = Arguments.createMap();
                         map.putString(TOKEN_PROPERTY, token);
                         map.putString(CARD_MASK_PROPERTY, cardMask);
