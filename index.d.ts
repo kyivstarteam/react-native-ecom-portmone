@@ -4,7 +4,7 @@ declare module '@kyivstarteam/react-native-ecom-portmone' {
         token: string
     }
 
-    interface PaymentsParams {
+    export interface PaymentsParams {
         token: string
         cardMask: string
     }
