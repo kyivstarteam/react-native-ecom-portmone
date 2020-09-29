@@ -43,7 +43,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
         Constant$Language.EN, Constant$Language.RU, Constant$Language.UK
     );
     private static final String TOKEN_PROPERTY = "token";
-    private static final String CARD_MASK_PROPERTY = "card_mask";
+    private static final String CARD_MASK_PROPERTY = "cardMask";
 
     private ReactApplicationContext reactContext;
     private Promise promise;
@@ -186,7 +186,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
                         String card_mask = bill.getCardMask();
                         WritableMap map = Arguments.createMap();
                         map.putString(TOKEN_PROPERTY, token);
-                        map.putString(CARD_MASK_PROPERTY, card_mask);
+                        map.putString(CARD_MASK_PROPERTY, cardMask);
                         promise.resolve(map);
                     } else {
                         promise.reject(Constants.PORTMONE_TAG, new Error("Result code: " + resultCode));
