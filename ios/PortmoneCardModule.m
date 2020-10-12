@@ -17,7 +17,15 @@ RCT_EXTERN_METHOD(initCardSaving:(NSString *)payeeId
                   resolve:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject
                   )
-
+RCT_EXTERN_METHOD(initCardPaymentByToken:(NSString *)payeeId
+                  phoneNumber:(NSString *)phoneNumber
+                  billAmount:(NSInteger *)billAmount
+                  type:(NSString *)type
+                  cardMask:(NSString *)cardMask
+                  token:(NSString *)token
+                  resolve:(RCTPromiseResolveBlock)resolve
+                  rejecter:(RCTPromiseRejectBlock)reject
+                  )
 
 + (BOOL)requiresMainQueueSetup
 {
