@@ -1,9 +1,5 @@
 declare module '@kyivstarteam/react-native-ecom-portmone' {
 
-    export interface SavingCardParams {
-        token: string
-    }
-
     export interface PaymentsParams {
         token: string
         cardMask: string
@@ -16,24 +12,28 @@ declare module '@kyivstarteam/react-native-ecom-portmone' {
         constructor(lang: string);
 
         initCardPayment(
-            payeeId: string,
-            phoneNumber: string,
-            billAmount: number,
-            uid: string,
-            type?: PaymentType
+          payeeId: string,
+          phoneNumber: string,
+          billAmount: number,
+          uid: string,
+          type?: PaymentType
         ): Promise<PaymentsParams>;
 
         initCardPaymentByToken(
-            payeeId: string,
-            phoneNumber: string,
-            billAmount: number,
-            uid: string,
-            cardMask: string,
-            token: string,
-            type?: PaymentType
+          payeeId: string,
+          phoneNumber: string,
+          billAmount: number,
+          uid: string,
+          cardMask: string,
+          token: string,
+          type?: PaymentType
         ): Promise<void>;
 
-        initCardSaving(payeeId: string): Promise<SavingCardParams>;
+        initCardSaving(
+          payeeId: string,
+          uid: string,
+          type?: PaymentType
+        ): Promise<PaymentsParams>;
     }
 
     export default PortmoneCardModule;

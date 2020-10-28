@@ -37,12 +37,19 @@ export default class PortmoneCardModule {
     throw new Error('unsupported platform (only ios and android)');
   }
 
-  initCardSaving = (payeeId) => {
+  initCardSaving = (payeeId, uid, type) => {
     if (typeof payeeId !== 'string') {
       throw new Error('payeeId must be string');
     }
-    RNModule.invokePortmoneSdk(this.lang);
-    return RNModule.initCardSaving(payeeId);
+    if (Platform.OS === 'ios') {
+      RNModule.invokePortmoneSdk(this.lang, uid);
+      return RNModule.initCardSaving(payeeId);
+    }
+    if (Platform.OS === 'android') {
+      RNModule.invokePortmoneSdk(this.lang, type, uid);
+      return RNModule.initCardSaving(payeeId);
+    }
+    throw new Error('unsupported platform (only ios and android)');
   }
 }
 
