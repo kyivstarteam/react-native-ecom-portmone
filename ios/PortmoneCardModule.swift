@@ -50,8 +50,8 @@ class PortmoneCardModule: NSObject, RCTBridgeModule {
     }
 
     @objc(initCardSaving:resolve:rejecter:)
-    public func initCardSaving(payeeId: String, _ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
-        self.portmoneCardViewController?.initCardSaving(payeeId: payeeId) {(result, error) in
+    public func initCardSaving(payeeId: String, phoneNumber: String, _ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) {
+        self.portmoneCardViewController?.initCardSaving(payeeId: payeeId, phoneNumber: phoneNumber) {(result, error) in
             if (result != nil) {
                 resolve(result.dictionary)
                 return

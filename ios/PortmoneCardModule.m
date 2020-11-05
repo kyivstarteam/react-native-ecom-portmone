@@ -14,6 +14,7 @@ RCT_EXTERN_METHOD(initCardPayment:(NSString *)payeeId
                   rejecter:(RCTPromiseRejectBlock)reject
                   )
 RCT_EXTERN_METHOD(initCardSaving:(NSString *)payeeId
+                  phoneNumber:(NSString *)phoneNumber
                   resolve:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject
                   )

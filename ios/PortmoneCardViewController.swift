@@ -68,9 +68,9 @@ class PortmoneCardViewController: UIViewController {
         )
     }
 
-    public func initCardSaving(payeeId: String, competition: @escaping (_ result: FinishPaymentsData?, _ error: Error?) -> Void) {
+    public func initCardSaving(payeeId: String, phoneNumber: String, competition: @escaping (_ result: FinishPaymentsData?, _ error: Error?) -> Void) {
         self.resolver = PortmoneCardResolver(resolver: competition)
-        let savingParams = self.getCardSavingParams(payeeId: payeeId)
+        let savingParams = self.getCardSavingParams(payeeId: payeeId, phoneNumber: phoneNumber)
 
         self.paymentPresenter?.presentPreauthCard(on: self, params: savingParams)
     }
@@ -137,10 +137,12 @@ class PortmoneCardViewController: UIViewController {
     }
 
     private func getCardSavingParams(
-        payeeId: String
+        payeeId: String,
+        phoneNumber: String
     ) -> PreauthParams {
         return PreauthParams(
-            payeeId: payeeId
+            payeeId: payeeId,
+            description: phoneNumber,
         )
     }
 

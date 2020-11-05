@@ -32,7 +32,8 @@ declare module '@kyivstarteam/react-native-ecom-portmone' {
         initCardSaving(
           payeeId: string,
           uid: string,
-          type?: PaymentType
+          phoneNumber: string,
+          type?: PaymentType,
         ): Promise<PaymentsParams>;
     }
 

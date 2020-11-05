@@ -121,12 +121,12 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void initCardSaving(String payeeId, final Promise promise) {
+    public void initCardSaving(String payeeId, String phoneNumber, final Promise promise) {
         try {
             final SaveCardParams saveCardParams = new SaveCardParams(
                 payeeId,
                 Constants.BILL_NUMBER,
-                ""
+                phoneNumber
             );
             PreauthCardActivity.performTransaction(
                 getCurrentActivity(),
