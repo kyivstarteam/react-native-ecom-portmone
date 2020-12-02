@@ -1,6 +1,6 @@
 {
-  "name": "react-native-ecom-portmone",
-  "version": "1.2.1",
+  "name": "@kyivstarteam/react-native-ecom-portmone",
+  "version": "1.2.0",
   "description": "Portmone E-com SDK",
   "main": "index",
   "types": "index.d.ts",
@@ -10,17 +10,20 @@
   "keywords": [
     "react-native"
   ],
-  "author": "Yevhenii Onipko",
+  "author": "Kyivstar Digital",
   "license": "MIT",
   "peerDependencies": {
     "react-native": "^0.41.2"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yevheniionipko/react-native-ecom-portmone.git"
+    "url": "git+https://github.com/kyivstarteam/react-native-ecom-portmone.git"
   },
   "bugs": {
-    "url": "https://github.com/yevheniionipko/react-native-ecom-portmone/issues"
+    "url": "https://github.com/kyivstarteam/react-native-ecom-portmone/issues"
   },
-  "homepage": "https://github.com/yevheniionipko/react-native-ecom-portmone#readme"
+  "homepage": "https://github.com/kyivstarteam/react-native-ecom-portmone#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
