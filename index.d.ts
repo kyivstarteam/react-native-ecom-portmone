@@ -1,4 +1,5 @@
 declare module '@kyivstarteam/react-native-ecom-portmone' {
+    import {EmitterSubscription} from 'react-native';
 
     export interface PaymentsParams {
         token: string
@@ -34,6 +35,14 @@ declare module '@kyivstarteam/react-native-ecom-portmone' {
           uid: string,
           type?: PaymentType
         ): Promise<PaymentsParams>;
+
+        addListener<K extends SupportedEventTypes>(
+          eventType: K,
+          callback: SupportedEvents[K],
+        ): EmitterSubscription;
+
+        removeAllListeners(eventType?: SupportedEventTypes): void;
+
     }
 
     export default PortmoneCardModule;

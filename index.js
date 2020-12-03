@@ -1,8 +1,11 @@
-import { NativeModules, Platform } from "react-native";
+import { NativeModules, Platform, NativeEventEmitter } from "react-native";
 const { PortmoneCardModule: RNModule } = NativeModules;
+
+const ModuleEmitter = new NativeEventEmitter(RNModule);
 
 export default class PortmoneCardModule {
   lang = 'uk';
+  subscription = null;
   constructor(lang) {
     this.lang = lang;
   }
@@ -50,6 +53,14 @@ export default class PortmoneCardModule {
       return RNModule.initCardSaving(payeeId);
     }
     throw new Error('unsupported platform (only ios and android)');
+  }
+
+  addListener(eventType, callback = () => {}) {
+    this.subscription = ModuleEmitter.addListener(eventType, callback);
+  }
+
+  removeAllListeners(eventType) {
+    this.subscription.remove();
   }
 }
 

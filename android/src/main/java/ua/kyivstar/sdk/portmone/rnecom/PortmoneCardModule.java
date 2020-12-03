@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.facebook.react.bridge.ActivityEventListener;
 import com.facebook.react.bridge.Arguments;
@@ -16,6 +18,7 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
 import com.facebook.react.bridge.WritableMap;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.uimanager.IllegalViewOperationException;
 import com.portmone.ecomsdk.PortmoneSDK;
 import com.portmone.ecomsdk.data.Bill;
@@ -44,6 +47,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
     );
     private static final String TOKEN_PROPERTY = "token";
     private static final String CARD_MASK_PROPERTY = "cardMask";
+    private static final String ON_FORM_DISMISS_EVENT = "onFormViewDissmissed";
 
     private ReactApplicationContext reactContext;
     private Promise promise;
@@ -53,6 +57,25 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
         super(reactContext);
         this.reactContext = reactContext;
         reactContext.addActivityEventListener(mActivityEventListener);
+    }
+
+    @MainThread
+    public boolean sendEvent(String eventName, @Nullable Object value) {
+        if (reactContext == null || !reactContext.hasActiveCatalystInstance()) {
+            return false;
+        }
+
+        try {
+            reactContext
+                    .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                    .emit(eventName, value);
+        } catch (Exception e) {
+            Log.d(Constants.PORTMONE_TAG, "SendEvent Error: " + e.getMessage());
+
+            return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -96,6 +119,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void initCardPayment(String payeeId, String phoneNumber, int billAmount, final Promise promise) {
+        Log.d(Constants.PORTMONE_TAG, "asd initCardPayment");
         try {
             final CardPaymentParams params = new CardPaymentParams(
                 payeeId,
@@ -191,6 +215,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
                     } else {
                         promise.reject(Constants.PORTMONE_TAG, new Error("Result code: " + resultCode));
                     }
+                    sendEvent(ON_FORM_DISMISS_EVENT, null);
                     promise = null;
                     break;
             }

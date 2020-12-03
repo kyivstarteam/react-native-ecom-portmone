@@ -2,6 +2,10 @@ import Foundation
 import UIKit
 import PortmoneSDKEcom
 
+protocol PortmoneCardModuleDelegate {
+  func onDismissView()
+}
+
 struct FinishPaymentsData: Codable {
     let token: String
     let cardMask: String
@@ -16,6 +20,7 @@ struct JSON {
 }
 
 class PortmoneCardViewController: UIViewController {
+    public var delegate: PortmoneCardModuleDelegate?
     private let closeModalCode = 0
     private let mobilePaymentType: PaymentType = .mobilePayment
     private let accountPaymentType: PaymentType = .account
@@ -172,8 +177,9 @@ extension PortmoneCardViewController: PortmonePaymentPresenterDelegate {
         let error = NSError(domain: "Result code: \(closeModalCode)", code: closeModalCode, userInfo: nil)
         self.resolver?.onPaymentFinish(nil, error)
         self.resolver = nil
+        self.delegate?.onDismissView()
         self.dismissView()
-    }
+      }
 }
 
 extension Encodable {
