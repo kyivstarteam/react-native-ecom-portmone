@@ -179,7 +179,7 @@ extension PortmoneCardViewController: PortmonePaymentPresenterDelegate {
         self.resolver = nil
         self.delegate?.onDismissView()
         self.dismissView()
-      }
+   }
 }
 
 extension Encodable {

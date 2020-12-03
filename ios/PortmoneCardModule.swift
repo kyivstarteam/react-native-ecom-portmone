@@ -12,7 +12,7 @@ class PortmoneCardModule: RCTEventEmitter {
     private var portmoneCardViewController: PortmoneCardViewController?
     private var rootViewController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
 
-    override static func moduleName() -> String! {
+    static func moduleName() -> String! {
         return "PortmoneCardModule"
     }
 

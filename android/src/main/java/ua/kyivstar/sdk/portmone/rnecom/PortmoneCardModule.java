@@ -119,7 +119,6 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void initCardPayment(String payeeId, String phoneNumber, int billAmount, final Promise promise) {
-        Log.d(Constants.PORTMONE_TAG, "asd initCardPayment");
         try {
             final CardPaymentParams params = new CardPaymentParams(
                 payeeId,
