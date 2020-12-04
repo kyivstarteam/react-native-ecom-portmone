@@ -106,17 +106,17 @@ class PortmoneCardViewController: UIViewController {
     }
 
     private func getTypeUI(type: String) -> PaymentType {
-        if (type == "phone") {
+        if (type == Constants.phone) {
             return mobilePaymentType
         }
-        if (type == "account") {
+        if (type == Constants.account) {
             return accountPaymentType
         }
         return defaultPaymentType
     }
 
     private func getAttribute(type: String) -> String {
-        if (type == "account") {
+        if (type == Constants.account) {
             return "A"
         }
         return "P"

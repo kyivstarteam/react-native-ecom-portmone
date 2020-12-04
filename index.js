@@ -55,7 +55,7 @@ export default class PortmoneCardModule {
     throw new Error('unsupported platform (only ios and android)');
   }
 
-  addListener(eventType, callback = () => {}) {
+  addListener(eventType, callback) {
     this.subscription = ModuleEmitter.addListener(eventType, callback);
   }
 

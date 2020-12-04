@@ -44,7 +44,7 @@ declare module '@kyivstarteam/react-native-ecom-portmone' {
 
         addListener<K extends SupportedEventTypes>(
           eventType: K,
-          callback: SupportedEvents[K],
+          callback?: SupportedEvents[K],
         ): EmitterSubscription;
 
         removeAllListeners(eventType?: SupportedEventTypes): void;

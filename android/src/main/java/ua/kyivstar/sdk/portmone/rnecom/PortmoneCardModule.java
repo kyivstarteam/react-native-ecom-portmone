@@ -45,9 +45,6 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
     private static final List<String> AVAILABLE_LANGUAGES = Arrays.asList(
         Constant$Language.EN, Constant$Language.RU, Constant$Language.UK
     );
-    private static final String TOKEN_PROPERTY = "token";
-    private static final String CARD_MASK_PROPERTY = "cardMask";
-    private static final String ON_FORM_DISMISS_EVENT = "onFormViewDismissed";
 
     private ReactApplicationContext reactContext;
     private Promise promise;
@@ -208,13 +205,13 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
                         String token = bill.getToken();
                         String cardMask = bill.getCardMask();
                         WritableMap map = Arguments.createMap();
-                        map.putString(TOKEN_PROPERTY, token);
-                        map.putString(CARD_MASK_PROPERTY, cardMask);
+                        map.putString(Constants.TOKEN_PROPERTY, token);
+                        map.putString(Constants.CARD_MASK_PROPERTY, cardMask);
                         promise.resolve(map);
                     } else {
                         promise.reject(Constants.PORTMONE_TAG, new Error("Result code: " + resultCode));
                     }
-                    sendEvent(ON_FORM_DISMISS_EVENT, null);
+                    sendEvent(Constants.ON_FORM_DISMISS_EVENT, null);
                     promise = null;
                     break;
             }

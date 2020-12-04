@@ -2,18 +2,14 @@
 import UIKit
 import Foundation
 
-enum RegisteredEvents: String {
-  case onFormViewDismissed = "onFormViewDismissed"
-}
-
 @objc(PortmoneCardModule)
-class PortmoneCardModule: RCTEventEmitter {
+class PortmoneCardModule: RCTBridgeModule {
     private var hasRegisteredEvents: Bool = false
     private var portmoneCardViewController: PortmoneCardViewController?
     private var rootViewController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
 
     static func moduleName() -> String! {
-        return "PortmoneCardModule"
+        return Constants.moduleName
     }
 
     @objc(invokePortmoneSdk:uid:)
@@ -108,7 +104,7 @@ class PortmoneCardModule: RCTEventEmitter {
     }
 }
 
-extension PortmoneCardModule {
+extension PortmoneCardModule: RCTEventEmitter {
   override func startObserving() {
     self.hasRegisteredEvents = true
   }
@@ -126,6 +122,6 @@ extension PortmoneCardModule {
 
 extension PortmoneCardModule: PortmoneCardModuleDelegate {
   func onDismissView() {
-    self.sendEvent(withName: RegisteredEvents.onFormViewDismissed.rawValue, body: nil)
+    self.sendEvent(withName: Constants.onFormViewDismissed, body: nil)
    }
 }
