@@ -3,12 +3,12 @@ import UIKit
 import Foundation
 
 @objc(PortmoneCardModule)
-class PortmoneCardModule: RCTBridgeModule {
+class PortmoneCardModule: RCTEventEmitter {
     private var hasRegisteredEvents: Bool = false
     private var portmoneCardViewController: PortmoneCardViewController?
     private var rootViewController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
 
-    static func moduleName() -> String! {
+    override static func moduleName() -> String! {
         return Constants.moduleName
     }
 
@@ -104,7 +104,7 @@ class PortmoneCardModule: RCTBridgeModule {
     }
 }
 
-extension PortmoneCardModule: RCTEventEmitter {
+extension PortmoneCardModule {
   override func startObserving() {
     self.hasRegisteredEvents = true
   }
