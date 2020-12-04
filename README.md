@@ -90,7 +90,7 @@ addOnFormDismissEvent = async (callback) => {
         portomoneSdk.removeAllListeners();
     };
 
-    await portomoneSdk.addListener('onFormViewDissmissed', eventCallback);
+    await portomoneSdk.addListener('onFormViewDismissed', eventCallback);
 }
 
 

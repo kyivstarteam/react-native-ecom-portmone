@@ -3,7 +3,7 @@ import UIKit
 import Foundation
 
 enum RegisteredEvents: String {
-  case onFormViewDissmissed = "onFormViewDissmissed"
+  case onFormViewDismissed = "onFormViewDismissed"
 }
 
 @objc(PortmoneCardModule)
@@ -126,6 +126,6 @@ extension PortmoneCardModule {
 
 extension PortmoneCardModule: PortmoneCardModuleDelegate {
   func onDismissView() {
-    self.sendEvent(withName: RegisteredEvents.onFormViewDissmissed.rawValue, body: nil)
+    self.sendEvent(withName: RegisteredEvents.onFormViewDismissed.rawValue, body: nil)
    }
 }

@@ -47,7 +47,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
     );
     private static final String TOKEN_PROPERTY = "token";
     private static final String CARD_MASK_PROPERTY = "cardMask";
-    private static final String ON_FORM_DISMISS_EVENT = "onFormViewDissmissed";
+    private static final String ON_FORM_DISMISS_EVENT = "onFormViewDismissed";
 
     private ReactApplicationContext reactContext;
     private Promise promise;

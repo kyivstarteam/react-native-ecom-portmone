@@ -5,7 +5,7 @@
 
 - (NSArray<NSString *> *)supportedEvents
 {
-  return @[@"onFormViewDissmissed"];
+  return @[@"onFormViewDismissed"];
 }
 
 RCT_EXTERN_METHOD(invokePortmoneSdk:(NSString *)lang
