@@ -9,7 +9,7 @@ declare module '@kyivstarteam/react-native-ecom-portmone' {
     export type PaymentType = 'account' | 'phone' | undefined
 
     interface SupportedEvents {
-        onTokenRefresh: (token: String) => void;
+        onFormViewDismissed: (token: String) => void;
     }
 
     type SupportedEventTypes = keyof SupportedEvents;
