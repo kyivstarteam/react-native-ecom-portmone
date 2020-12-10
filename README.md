@@ -84,4 +84,14 @@ initSavingCard = async () => {
     const result: SavingCard = await portmoneSdk.initCardSaving(payeeId);
 }
 
+addOnFormDismissEvent = async (callback) => {
+    const eventCallback = () => {
+        callback();
+        portomoneSdk.removeAllListeners();
+    };
+
+    await portomoneSdk.addListener('onFormViewDismissed', eventCallback);
+}
+
+
 ```

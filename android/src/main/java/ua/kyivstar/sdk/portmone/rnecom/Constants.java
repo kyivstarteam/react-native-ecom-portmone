@@ -11,4 +11,8 @@ public final class Constants {
     public final static String ACCOUNT_TYPE = "account";
     public final static String PORTMONE_TAG = "PORTMONE";
     public final static String BILL_KEY = "BILL";
+
+    public static final String TOKEN_PROPERTY = "token";
+    public static final String CARD_MASK_PROPERTY = "cardMask";
+    public static final String ON_FORM_DISMISS_EVENT = "onFormViewDismissed";
 }
