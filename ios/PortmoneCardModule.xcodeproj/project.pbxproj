@@ -13,6 +13,7 @@
 		3AA0F7892422D536006BFFC4 /* PortmoneCardStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0F7882422D536006BFFC4 /* PortmoneCardStyle.swift */; };
 		3AA0F78B2422D544006BFFC4 /* PortmonePaymentPresenterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA0F78A2422D544006BFFC4 /* PortmonePaymentPresenterDelegate.swift */; };
 		B3E7B58A1CC2AC0600A0062D /* PortmoneCardModule.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* PortmoneCardModule.m */; };
+		D899C73D257A431E00AA1F3B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D899C73C257A431E00AA1F3B /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,7 @@
 		3AA0F78A2422D544006BFFC4 /* PortmonePaymentPresenterDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortmonePaymentPresenterDelegate.swift; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* PortmoneCardModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortmoneCardModule.h; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* PortmoneCardModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortmoneCardModule.m; sourceTree = "<group>"; };
+		D899C73C257A431E00AA1F3B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				D899C73C257A431E00AA1F3B /* Constants.swift */,
 				B3E7B5881CC2AC0600A0062D /* PortmoneCardModule.h */,
 				3AA0F7842422D4E3006BFFC4 /* PortmoneCardModule.swift */,
 				B3E7B5891CC2AC0600A0062D /* PortmoneCardModule.m */,
@@ -135,6 +138,7 @@
 				3A3C2500244DCB7300D6217C /* PortmoneCardResolver.swift in Sources */,
 				3AA0F7872422D51E006BFFC4 /* PortmoneCardViewController.swift in Sources */,
 				3AA0F7892422D536006BFFC4 /* PortmoneCardStyle.swift in Sources */,
+				D899C73D257A431E00AA1F3B /* Constants.swift in Sources */,
 				B3E7B58A1CC2AC0600A0062D /* PortmoneCardModule.m in Sources */,
 				3AA0F7852422D4E3006BFFC4 /* PortmoneCardModule.swift in Sources */,
 			);

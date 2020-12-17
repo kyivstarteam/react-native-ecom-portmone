@@ -3,6 +3,11 @@
 
 @interface RCT_EXTERN_MODULE(PortmoneCardModule, NSObject)
 
+- (NSArray<NSString *> *)supportedEvents
+{
+  return @[@"onFormViewDismissed"];
+}
+
 RCT_EXTERN_METHOD(invokePortmoneSdk:(NSString *)lang
                   uid:(NSString *)uid
                   )

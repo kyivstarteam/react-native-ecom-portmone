@@ -3,18 +3,20 @@ import UIKit
 import Foundation
 
 @objc(PortmoneCardModule)
-class PortmoneCardModule: NSObject, RCTBridgeModule {
+class PortmoneCardModule: RCTEventEmitter {
+    private var hasRegisteredEvents: Bool = false
     private var portmoneCardViewController: PortmoneCardViewController?
     private var rootViewController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
 
-    static func moduleName() -> String! {
-        return "PortmoneCardModule"
+    override static func moduleName() -> String! {
+        return Constants.moduleName
     }
 
     @objc(invokePortmoneSdk:uid:)
     public func invokePortmoneSdk(lang: String, uid: String) -> Void {
         self.portmoneCardViewController = PortmoneCardViewController()
 
+        self.portmoneCardViewController?.delegate = self
         self.portmoneCardViewController?.invokePortmoneSdk(lang: lang, uid: uid)
         self.rootViewController.present(self.portmoneCardViewController!, animated: true)
     }
@@ -100,4 +102,26 @@ class PortmoneCardModule: NSObject, RCTBridgeModule {
 
         }
     }
+}
+
+extension PortmoneCardModule {
+  override func startObserving() {
+    self.hasRegisteredEvents = true
+  }
+
+  override func stopObserving() {
+    self.hasRegisteredEvents = false
+  }
+
+  override func sendEvent(withName name: String!, body: Any!) {
+    if (hasRegisteredEvents) {
+      super.sendEvent(withName: name, body: body)
+    }
+  }
+}
+
+extension PortmoneCardModule: PortmoneCardModuleDelegate {
+  func onDismissView() {
+    self.sendEvent(withName: Constants.onFormViewDismissed, body: nil)
+   }
 }
