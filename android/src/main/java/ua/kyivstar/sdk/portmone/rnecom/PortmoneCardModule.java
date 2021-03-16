@@ -126,6 +126,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
                 null,
                 null,
                 null,
+                null,
                 billAmount,
                 phoneNumber
             );
@@ -175,6 +176,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
                     Constants.ALLOW_PRE_AUTH,
                     Constant$BillCurrency.UAH,
                     getAttribute(this.numberType),
+                    null,
                     null,
                     null,
                     null,
