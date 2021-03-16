@@ -23,6 +23,6 @@ Pod::Spec.new do |s|
   s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
 
   s.dependency "React"
-  s.dependency "PortmoneSDKEcom", "1.3.7"
+  s.dependency "PortmoneSDKEcom", "1.7.7"
 end
 
