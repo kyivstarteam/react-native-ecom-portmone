@@ -32,13 +32,9 @@ repositories {
     jcenter()
 
     mavenCentral()
-    maven {
-        url "https://github.com/Portmone/Android-e-Commerce-SDK/raw/master/"
-    }
 }
 
 dependencies {
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.portmone.ecomsdk:ecomsdk:1.3.7'
+    implementation 'com.portmone.ecomsdk:ecomsdk:1.3.9'
 }
-  
