@@ -32,6 +32,9 @@ repositories {
     jcenter()
 
     mavenCentral()
+    maven {
+        url "https://github.com/Portmone/Android-e-Commerce-SDK/raw/master/"
+    }
 }
 
 dependencies {
