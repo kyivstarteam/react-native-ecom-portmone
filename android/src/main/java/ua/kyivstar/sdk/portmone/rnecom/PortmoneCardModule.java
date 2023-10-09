@@ -128,7 +128,8 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
                 null,
                 null,
                 billAmount,
-                phoneNumber
+                phoneNumber,
+                null
             );
             CardPaymentActivity.performTransaction(
                 getCurrentActivity(),
@@ -142,10 +143,11 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void initCardSaving(String payeeId, final Promise promise) {
+    public void initCardSaving(String payeeId, String phoneNumber, final Promise promise) {
         try {
             final SaveCardParams saveCardParams = new SaveCardParams(
                 payeeId,
+                phoneNumber,
                 Constants.BILL_NUMBER,
                 ""
             );

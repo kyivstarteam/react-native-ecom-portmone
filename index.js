@@ -40,7 +40,7 @@ export default class PortmoneCardModule {
     throw new Error('unsupported platform (only ios and android)');
   }
 
-  initCardSaving = (payeeId, uid, type) => {
+  initCardSaving = (payeeId, uid, subID, type) => {
     if (typeof payeeId !== 'string') {
       throw new Error('payeeId must be string');
     }
@@ -50,7 +50,7 @@ export default class PortmoneCardModule {
     }
     if (Platform.OS === 'android') {
       RNModule.invokePortmoneSdk(this.lang, type, uid);
-      return RNModule.initCardSaving(payeeId);
+      return RNModule.initCardSaving(payeeId, subID);
     }
     throw new Error('unsupported platform (only ios and android)');
   }
