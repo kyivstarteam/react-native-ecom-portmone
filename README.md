@@ -24,10 +24,6 @@ allprojects {
 
    }
 }
-### build.gradle (app level)
-dependencies {
-       implementation 'com.portmone.ecomsdk:ecomsdk:1.3.3'
-}
 ```
 
 ### Install
