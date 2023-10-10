@@ -13,7 +13,7 @@
   "author": "Kyivstar Digital",
   "license": "MIT",
   "peerDependencies": {
-    "react-native": "^0.41.2"
+    "react-native": "^0.70.6"
   },
   "repository": {
     "type": "git",
