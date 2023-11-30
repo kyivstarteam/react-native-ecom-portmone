@@ -38,6 +38,28 @@ repositories {
 }
 
 dependencies {
+
+    def activity_version = "1.7.2"
+    def activity_ktx_version = "1.7.0"
+    def activity_compose_version = "1.4.0"
+    def core_ktx_version = "1.10.1"
+
+    implementation("androidx.activity:activity:$activity_version") {
+        force = true
+    }
+
+    implementation("androidx.activity:activity-ktx:$activity_ktx_version") {
+        force = true
+    }
+
+    implementation("androidx.activity:activity-compose:$activity_compose_version") {
+        force = true
+    }
+
+    implementation("androidx.core:core-ktx:$core_ktx_version") {
+        force = true
+    }
+
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.portmone.ecomsdk:ecomsdk:2.2.1'
+    implementation 'com.portmone.ecomsdk:ecomsdk:2.2.3'
 }
