@@ -61,5 +61,5 @@ dependencies {
     }
 
     implementation 'com.facebook.react:react-native:+'
-    implementation 'com.portmone.ecomsdk:ecomsdk:2.2.3'
+    implementation 'com.portmone.ecomsdk:ecomsdk:2.2.4'
 }
