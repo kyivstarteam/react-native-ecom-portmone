@@ -1,10 +1,11 @@
 
 import Foundation
 import PortmoneSDKEcom
+import PassKit
 
 class PortmoneCardStyle: StyleSource {
     private static let buttonCornerRadius = CGFloat(25)
-    private static let defaultFont = UIFont.systemFont(ofSize: 1)
+    private static let defaultFont = UIFont.systemFont(ofSize: 2, weight: UIFont.Weight.regular)
     private static let whiteColor = UIColor.white
     private static let blackColor = UIColor.black
     private static let grayColor = UIColor(red: 0.713, green: 0.713, blue: 0.713, alpha: 1.0)
@@ -18,7 +19,7 @@ class PortmoneCardStyle: StyleSource {
     }
 
     func textsColor() -> UIColor {
-        return PortmoneCardStyle.blackColor
+        return UIColor.black
     }
 
     func infoTextsColor() -> UIColor {
@@ -38,7 +39,7 @@ class PortmoneCardStyle: StyleSource {
     }
 
     func titleFont() -> UIFont {
-        return PortmoneCardStyle.defaultFont
+        return UIFont.systemFont(ofSize: 2, weight: UIFont.Weight.bold)
     }
 
     func titleColor() -> UIColor {
@@ -46,7 +47,7 @@ class PortmoneCardStyle: StyleSource {
     }
 
     func headersFont() -> UIFont {
-        return PortmoneCardStyle.defaultFont
+        return UIFont.systemFont(ofSize: 2, weight: UIFont.Weight.bold)
     }
 
     func headersColor() -> UIColor {
@@ -58,7 +59,7 @@ class PortmoneCardStyle: StyleSource {
     }
 
     func buttonTitleColor() -> UIColor {
-        return PortmoneCardStyle.blackColor
+        return UIColor.white
     }
 
     func buttonCornerRadius() -> CGFloat {
@@ -70,7 +71,7 @@ class PortmoneCardStyle: StyleSource {
     }
 
     func buttonColor() -> UIColor {
-        return PortmoneCardStyle.yellowColor
+        return UIColor(red: 0, green: 0.529, blue: 0.901, alpha: 1.0)
     }
 
     func successImage() -> UIImage? {
@@ -110,5 +111,20 @@ class PortmoneCardStyle: StyleSource {
 
     func resultMessageColor() -> UIColor {
         return PortmoneCardStyle.blackColor
+    }
+    func applePayButtonStyle() -> PKPaymentButtonStyle {
+        return PKPaymentButtonStyle.white
+    }
+    func privatPayButtonColor() -> UIColor {
+        return UIColor.yellow
+    }
+    func privatPayButtonTitleColor() -> UIColor {
+        return UIColor.black
+    }
+    func publicOfferButtonColor() -> UIColor {
+        return UIColor.white
+    }
+    func publicOfferButtonTitleColor() -> UIColor {
+        return UIColor(red: 0, green: 0.529, blue: 0.901, alpha: 1.0)
     }
 }
