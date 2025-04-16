@@ -6,8 +6,15 @@ import Foundation
 class PortmoneCardModule: RCTEventEmitter {
     private var hasRegisteredEvents: Bool = false
     private var portmoneCardViewController: PortmoneCardViewController?
-    private var rootViewController: UIViewController = UIApplication.shared.keyWindow!.rootViewController!
+    private var rootViewController: UIViewController {
+        let scene = UIApplication.shared.connectedScenes
+            .first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene
 
+        let rootViewController = (scene?
+            .windows.first(where: { $0.isKeyWindow })?
+            .rootViewController)!
+        return rootViewController
+    }
     override static func moduleName() -> String! {
         return Constants.moduleName
     }

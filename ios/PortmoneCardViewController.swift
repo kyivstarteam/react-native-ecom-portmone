@@ -173,12 +173,20 @@ extension PortmoneCardViewController: PortmonePaymentPresenterDelegate {
         }
     }
 
-    func dismissedSDK() {
+    func closeSDK() {
         let error = NSError(domain: "Result code: \(closeModalCode)", code: closeModalCode, userInfo: nil)
         self.resolver?.onPaymentFinish(nil, error)
         self.resolver = nil
         self.delegate?.onDismissView()
         self.dismissView()
+    }
+
+    func dismissedSDK() {
+        self.closeSDK()
+   }
+
+    func canceledSDK() {
+        self.closeSDK()
    }
 }
 
