@@ -1,65 +1,18 @@
-
-buildscript {
-    repositories {
-        jcenter()
-        google()
-    }
-
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.1'
-    }
-}
-
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion "23.0.1"
+    compileSdkVersion 34
+    buildToolsVersion "33.0.0"
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 22
+        minSdkVersion 24
+        targetSdkVersion 34
         versionCode 1
         versionName "1.0"
-    }
-    lintOptions {
-        abortOnError false
-    }
-}
-
-repositories {
-    google()
-    jcenter()
-
-    mavenCentral()
-    maven {
-        url "https://github.com/Portmone/Android-e-Commerce-SDK/raw/master/"
     }
 }
 
 dependencies {
-
-    def activity_version = "1.7.2"
-    def activity_ktx_version = "1.7.0"
-    def activity_compose_version = "1.4.0"
-    def core_ktx_version = "1.10.1"
-
-    implementation("androidx.activity:activity:$activity_version") {
-        force = true
-    }
-
-    implementation("androidx.activity:activity-ktx:$activity_ktx_version") {
-        force = true
-    }
-
-    implementation("androidx.activity:activity-compose:$activity_compose_version") {
-        force = true
-    }
-
-    implementation("androidx.core:core-ktx:$core_ktx_version") {
-        force = true
-    }
-
     implementation 'com.facebook.react:react-native:+'
     implementation 'com.portmone.ecomsdk:ecomsdk:3.0.11'
 }
