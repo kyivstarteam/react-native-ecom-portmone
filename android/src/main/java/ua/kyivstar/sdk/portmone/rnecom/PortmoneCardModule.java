@@ -29,10 +29,7 @@ import com.portmone.ecomsdk.data.style.AppStyle;
 import com.portmone.ecomsdk.ui.card.CardPaymentActivity;
 import com.portmone.ecomsdk.ui.savecard.PreauthCardActivity;
 import com.portmone.ecomsdk.ui.token.payment.TokenPaymentActivity;
-import com.portmone.ecomsdk.util.Constant$BillCurrency;
-
-import com.portmone.ecomsdk.util.Constant$Language;
-import com.portmone.ecomsdk.util.Constant$Type;
+import com.portmone.ecomsdk.util.Constant;
 
 import java.util.Arrays;
 import java.util.List;
@@ -43,7 +40,7 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
 
     private static final AppStyleFactory APP_STYLE_FACTORY = new AppStyleFactory();
     private static final List<String> AVAILABLE_LANGUAGES = Arrays.asList(
-        Constant$Language.EN, Constant$Language.RU, Constant$Language.UK
+            Constant.Language.EN, Constant.Language.UK
     );
 
     private ReactApplicationContext reactContext;
@@ -81,17 +78,17 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
     }
 
     private String getLanguage(String lang) {
-        return AVAILABLE_LANGUAGES.contains(lang) ? lang : Constant$Language.SYSTEM;
+        return AVAILABLE_LANGUAGES.contains(lang) ? lang : Constant.Language.SYSTEM;
     }
 
     private int getTypeUI(String type) {
         if (type.equals(Constants.PHONE_TYPE)) {
-            return Constant$Type.PHONE;
+            return Constant.Type.PHONE;
         }
         if (type.equals(Constants.ACCOUNT_TYPE)) {
-            return Constant$Type.ACCOUNT;
+            return Constant.Type.ACCOUNT;
         }
-        return Constant$Type.DEFAULT;
+        return Constant.Type.DEFAULT;
     }
 
     private String getAttribute(String type) {
@@ -120,8 +117,9 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
             final CardPaymentParams params = new CardPaymentParams(
                 payeeId,
                 Constants.BILL_NUMBER,
+                "",
                 Constants.ALLOW_PRE_AUTH,
-                Constant$BillCurrency.UAH,
+                Constant.BillCurrency.UAH,
                 getAttribute(this.numberType),
                 "",
                 "",
@@ -175,8 +173,9 @@ public class PortmoneCardModule extends ReactContextBaseJavaModule {
             final TokenPaymentParams params = new TokenPaymentParams(
                     payeeId,
                     Constants.BILL_NUMBER,
+                    "",
                     Constants.ALLOW_PRE_AUTH,
-                    Constant$BillCurrency.UAH,
+                    Constant.BillCurrency.UAH,
                     getAttribute(this.numberType),
                     null,
                     null,
